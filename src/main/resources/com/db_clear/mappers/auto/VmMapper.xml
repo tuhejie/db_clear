@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.db_clear.mappers.auto.VmMapper">
+  <resultMap id="BaseResultMap" type="com.db_clear.entities.auto.Vm">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="vm_number" jdbcType="VARCHAR" property="vmNumber" />
+    <result column="vm_alias" jdbcType="VARCHAR" property="vmAlias" />
+    <result column="numMark" jdbcType="VARCHAR" property="nummark" />
+    <result column="mac_address" jdbcType="VARCHAR" property="macAddress" />
+    <result column="ccid" jdbcType="VARCHAR" property="ccid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="vm_status" jdbcType="INTEGER" property="vmStatus" />
+    <result column="fault_lock" jdbcType="INTEGER" property="faultLock" />
+    <result column="vm_property_info" jdbcType="VARCHAR" property="vmPropertyInfo" />
+    <result column="property_id" jdbcType="BIGINT" property="propertyId" />
+    <result column="model_type" jdbcType="INTEGER" property="modelType" />
+    <result column="group_indexes" jdbcType="VARCHAR" property="groupIndexes" />
+    <result column="product_road_type" jdbcType="VARCHAR" property="productRoadType" />
+    <result column="sum_row" jdbcType="INTEGER" property="sumRow" />
+    <result column="sum_box" jdbcType="INTEGER" property="sumBox" />
+    <result column="province_name" jdbcType="INTEGER" property="provinceName" />
+    <result column="city_name" jdbcType="INTEGER" property="cityName" />
+    <result column="area_name" jdbcType="INTEGER" property="areaName" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="last_task_time" jdbcType="TIMESTAMP" property="lastTaskTime" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="vm_code" jdbcType="VARCHAR" property="vmCode" />
+    <result column="task_type" jdbcType="INTEGER" property="taskType" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="is_online" jdbcType="INTEGER" property="isOnline" />
+    <result column="on_box" jdbcType="INTEGER" property="onBox" />
+    <result column="start_operate_time" jdbcType="TIMESTAMP" property="startOperateTime" />
+    <result column="is_support_group" jdbcType="BIT" property="isSupportGroup" />
+    <result column="batch_number" jdbcType="VARCHAR" property="batchNumber" />
+    <result column="mainboard_code" jdbcType="VARCHAR" property="mainboardCode" />
+    <result column="is_set_position" jdbcType="BIT" property="isSetPosition" />
+    <result column="qrcode" jdbcType="VARCHAR" property="qrcode" />
+    <result column="is_bind_vm" jdbcType="BIT" property="isBindVm" />
+    <result column="is_bind_box" jdbcType="BIT" property="isBindBox" />
+    <result column="currentOperatorId" jdbcType="BIGINT" property="currentoperatorid" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="front_quality_status" jdbcType="INTEGER" property="frontQualityStatus" />
+    <result column="quality_status" jdbcType="INTEGER" property="qualityStatus" />
+    <result column="is_correctBindingMacAddress" jdbcType="BIT" property="isCorrectbindingmacaddress" />
+    <result column="is_throughRoadTest" jdbcType="BIT" property="isThroughroadtest" />
+    <result column="is_throughOtherHardwareTest" jdbcType="BIT" property="isThroughotherhardwaretest" />
+    <result column="is_throughTemperatureTest" jdbcType="BIT" property="isThroughtemperaturetest" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="biz_area_id" jdbcType="BIGINT" property="bizAreaId" />
+    <result column="plotId" jdbcType="BIGINT" property="plotid" />
+    <result column="is_open_auto_temp_control" jdbcType="BIT" property="isOpenAutoTempControl" />
+    <result column="version_id" jdbcType="INTEGER" property="versionId" />
+    <result column="last_supply_time" jdbcType="TIMESTAMP" property="lastSupplyTime" />
+    <result column="manufacturer_id" jdbcType="INTEGER" property="manufacturerId" />
+    <result column="test_state" jdbcType="VARCHAR" property="testState" />
+    <result column="price_template_id" jdbcType="BIGINT" property="priceTemplateId" />
+    <result column="price_template_update_time" jdbcType="TIMESTAMP" property="priceTemplateUpdateTime" />
+    <result column="activate_time" jdbcType="TIMESTAMP" property="activateTime" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+</mapper>

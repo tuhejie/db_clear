@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<properties resource="generator/generator-config.properties" />
+
+	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+
+		<!-- 插件配置 -->
+		<!-- 序列化插件 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<!-- equals hashcode插件 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<!-- ToString插件 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+		<plugin type="${mapper.plugin}">
+			<property name="mappers" value="${mapper.Mapper}" />
+		</plugin>
+		
+		<!-- MySQL数据库配置信息 -->
+		<jdbcConnection driverClass="${jdbc.driverClass}"
+			connectionURL="${jdbc.url}" userId="${jdbc.user}" password="${jdbc.password}">
+		</jdbcConnection>
+		
+		<!-- 实体类生成路径 -->
+		<javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}" />
+		<!-- mapper.xml 文件生成路径 -->
+		<sqlMapGenerator targetPackage="${targetXMLPackage}" targetProject="${targetResourcesProject}" />
+		<!-- mapper.java 文件生成路径 -->
+		<javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
+		
+		<!-- mysql 表 -->
+		<table tableName="mq_vm" domainObjectName="Vm">
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>
+
+	</context>
+</generatorConfiguration>
