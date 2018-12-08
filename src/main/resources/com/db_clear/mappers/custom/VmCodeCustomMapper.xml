@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.db_clear.mappers.custom.VmCodeCustomMapper">
+  <resultMap id="BaseResultMap" type="com.db_clear.entities.auto.VmCode">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="vmcode" jdbcType="VARCHAR" property="vmcode" />
+    <result column="print_modal_id" jdbcType="SMALLINT" property="printModalId" />
+    <result column="belong" jdbcType="INTEGER" property="belong" />
+    <result column="vm_id" jdbcType="BIGINT" property="vmId" />
+    <result column="vmbox_id" jdbcType="BIGINT" property="vmboxId" />
+    <result column="qrcode" jdbcType="VARCHAR" property="qrcode" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="batch" jdbcType="VARCHAR" property="batch" />
+    <result column="vm_modal_id" jdbcType="SMALLINT" property="vmModalId" />
+    <result column="vm_box_modal_id" jdbcType="SMALLINT" property="vmBoxModalId" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="bind_person_id" jdbcType="SMALLINT" property="bindPersonId" />
+    <result column="bind_person_type" jdbcType="SMALLINT" property="bindPersonType" />
+    <result column="numMark" jdbcType="VARCHAR" property="nummark" />
+    <result column="manufacturer_id" jdbcType="INTEGER" property="manufacturerId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+
+  <!--查斑码头系统中 numMark 的最大值-->
+  <select id="selectMaxNumMarkFromVmCode" resultType="java.lang.String">
+    SELECT MAX(numMark) FROM mq_vm_code WHERE belong = 1;
+  </select>
+
+  <!--在猫小贩系统中查机器码列表-->
+  <select id="selectVmCodeByVmId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+      mvc.*
+  FROM
+      mq_vm_code_copy mvc
+      LEFT JOIN mq_vm_copy mv ON mvc.vm_id = mv.id
+  WHERE
+      mv.qrcode = mvc.qrcode
+      AND mv.qrcode IS NOT NULL
+      AND mv.qrcode != ''
+      AND mvc.vm_id = #{vmId}
+  </select>
+
+  <!--在猫小贩系统中查询格子码列表（如果是格子机）-->
+  <select id="selectVmBoxCodeByVmId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+      mvc.*
+  FROM
+      mq_vm_code_copy mvc
+      LEFT JOIN mq_vm_box_copy mvb ON mvc.vmbox_id = mvb.id
+  WHERE
+      mvc.qrcode = mvb.qrcode
+      AND mvb.qrcode IS NOT NULL
+      AND mvb.qrcode != ''
+      AND mvb.vm_id = #{vmId}
+  </select>
+
+  <!--如果是格子机，更新 mq_vm_code 中的 vmbox_id 为新的 vmbox_id-->
+  <update id="updateVmBoxIdInVmCode" parameterType="java.lang.Long">
+    UPDATE mq_vm_code mvc, mq_vm_box mvb
+  SET mvc.vmbox_id = mvb.id
+  WHERE
+      mvb.qrcode = mvc.qrcode
+      AND mvb.qrcode IS NOT NULL
+      AND mvb.qrcode != ''
+      AND mvb.vm_id = #{vmId}
+  </update>
+
+    <!--当前这台机器是弹簧机，更新mv_vm_code 表中的print_modal_id= 62 (只针对弹簧机)-->
+    <update id="updatePrintModelIdInVmCode" parameterType="java.lang.Long">
+        UPDATE mq_vm_code SET print_modal_id = 62 WHERE belong = 1 AND vm_id = #{vmId}
+    </update>
+
+</mapper>

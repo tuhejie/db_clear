@@ -4,8 +4,10 @@
 	<properties resource="generator/generator-config.properties" />
 
 	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
 		<property name="beginningDelimiter" value="`" />
 		<property name="endingDelimiter" value="`" />
+		<property name="javaFileEncoding" value="UTF-8" />
 
 		<!-- 插件配置 -->
 		<!-- 序列化插件 -->
@@ -32,7 +34,24 @@
 		<javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
 		
 		<!-- mysql 表 -->
+		<!--
+
 		<table tableName="mq_vm" domainObjectName="Vm">
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>
+
+
+		-->
+		<table tableName="mq_vm_box" domainObjectName="VmBox">
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>
+		<table tableName="mq_vm_code" domainObjectName="VmCode">
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>
+		<table tableName="mq_vm_machine_config" domainObjectName="VmMachineConfig">
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>
+		<table tableName="mq_vm_current_status" domainObjectName="VmCurrentStatus">
 			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
 		</table>
 

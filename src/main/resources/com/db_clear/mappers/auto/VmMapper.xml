@@ -21,9 +21,9 @@
     <result column="product_road_type" jdbcType="VARCHAR" property="productRoadType" />
     <result column="sum_row" jdbcType="INTEGER" property="sumRow" />
     <result column="sum_box" jdbcType="INTEGER" property="sumBox" />
-    <result column="province_name" jdbcType="INTEGER" property="provinceName" />
-    <result column="city_name" jdbcType="INTEGER" property="cityName" />
-    <result column="area_name" jdbcType="INTEGER" property="areaName" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
     <result column="region" jdbcType="VARCHAR" property="region" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="last_task_time" jdbcType="TIMESTAMP" property="lastTaskTime" />
@@ -62,6 +62,12 @@
     <result column="price_template_id" jdbcType="BIGINT" property="priceTemplateId" />
     <result column="price_template_update_time" jdbcType="TIMESTAMP" property="priceTemplateUpdateTime" />
     <result column="activate_time" jdbcType="TIMESTAMP" property="activateTime" />
+    <result column="assign_time" jdbcType="TIMESTAMP" property="assignTime" />
+    <result column="point_position_id" jdbcType="BIGINT" property="pointPositionId" />
+    <result column="business_area_id" jdbcType="BIGINT" property="businessAreaId" />
+    <result column="industry_id" jdbcType="BIGINT" property="industryId" />
+    <result column="first_industry_id" jdbcType="BIGINT" property="firstIndustryId" />
+    <result column="address_title" jdbcType="VARCHAR" property="addressTitle" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
 </mapper>

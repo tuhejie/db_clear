@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.db_clear.mappers.custom.VmBoxCustomMapper">
+  <resultMap id="BaseResultMap" type="com.db_clear.entities.auto.VmBox">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="box_number" jdbcType="VARCHAR" property="boxNumber" />
+    <result column="vm_id" jdbcType="BIGINT" property="vmId" />
+    <result column="group_index" jdbcType="INTEGER" property="groupIndex" />
+    <result column="vm_property_id" jdbcType="BIGINT" property="vmPropertyId" />
+    <result column="ope_product_id" jdbcType="BIGINT" property="opeProductId" />
+    <result column="box_status" jdbcType="TINYINT" property="boxStatus" />
+    <result column="is_lock" jdbcType="TINYINT" property="isLock" />
+    <result column="property_id" jdbcType="BIGINT" property="propertyId" />
+    <result column="layer" jdbcType="INTEGER" property="layer" />
+    <result column="row" jdbcType="INTEGER" property="row" />
+    <result column="column" jdbcType="INTEGER" property="column" />
+    <result column="qrcode" jdbcType="VARCHAR" property="qrcode" />
+    <result column="lock_status" jdbcType="INTEGER" property="lockStatus" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="box_index" jdbcType="INTEGER" property="boxIndex" />
+    <result column="box_index2" jdbcType="INTEGER" property="boxIndex2" />
+    <result column="sum_stock" jdbcType="INTEGER" property="sumStock" />
+    <result column="current_stock" jdbcType="INTEGER" property="currentStock" />
+    <result column="lock_time" jdbcType="TIMESTAMP" property="lockTime" />
+    <result column="box_road_status" jdbcType="INTEGER" property="boxRoadStatus" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="split_quantity" jdbcType="INTEGER" property="splitQuantity" />
+    <result column="is_enable" jdbcType="INTEGER" property="isEnable" />
+    <result column="open_type" jdbcType="INTEGER" property="openType" />
+  </resultMap>
+
+
+
+  <!--查询猫小贩系统中的vm_box数据-->
+  <select id="selectVmBoxListByVmId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+      *
+  FROM
+      mq_vm_box_copy
+  WHERE
+      vm_id = #{vmId}
+  </select>
+
+  <insert id="insertVmBox" parameterType="com.db_clear.entities.auto.VmBox">
+    INSERT INTO
+    `mq_vm_box` (
+      `box_number`,
+      `vm_id`,
+      `group_index`,
+      `vm_property_id`,
+      `ope_product_id`,
+      `box_status`,
+      `is_lock`,
+      `property_id`,
+      `layer`,
+      `row`,
+      `column`,
+      `qrcode`,
+      `lock_status`,
+      `customer_id`,
+      `box_index`,
+      `box_index2`,
+      `sum_stock`,
+      `current_stock`,
+      `lock_time`,
+      `box_road_status`,
+      `parent_id`,
+      `split_quantity`,
+      `is_enable`,
+      `open_type`
+  )
+  VALUES
+      (
+          #{boxNumber},
+          #{vmId},
+          #{groupIndex},
+          #{vmPropertyId},
+          #{opeProductId},
+          #{boxStatus},
+          #{isLock},
+          #{propertyId},
+          #{layer},
+          #{row},
+          #{column},
+          #{qrcode},
+          #{lockStatus},
+          #{customerId},
+          #{boxIndex},
+          #{boxIndex2},
+          #{sumStock},
+          #{currentStock},
+          #{lockTime},
+          #{boxRoadStatus},
+          #{parentId},
+          #{splitQuantity},
+          #{isEnable},
+          #{openType}
+      )
+  </insert>
+
+</mapper>
