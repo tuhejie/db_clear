@@ -38,11 +38,7 @@ public class VmDbClearController extends BaseController {
 	 */
 	// @RequestMapping(value = "/clear_vm")
 	public void clearVmAddress() {
-<<<<<<< HEAD
-		vmService.vmLongitudeAndLatitude();
-=======
 		// vmService.vmLongitudeAndLatitude();
->>>>>>> master
 	}
 
 	@RequestMapping(value = "/test")
