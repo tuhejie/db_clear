@@ -39,7 +39,7 @@
     SELECT
       *
   FROM
-      mq_vm_box_copy
+      mq_vm_box_mxf
   WHERE
       vm_id = #{vmId}
   </select>

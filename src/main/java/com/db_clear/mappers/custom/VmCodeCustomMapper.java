@@ -38,4 +38,11 @@ public interface VmCodeCustomMapper extends Mapper<VmCode> {
      * @return
      */
     int updatePrintModelIdInVmCode(Long vmId);
+
+    /**
+     * 部分格子机 mq_vm_code 表中的numMark 为null，需手动更新mq_vm_box 表中的box_number到mq_vm_code中的numMark
+     * @param vmId
+     * @return
+     */
+    int updateVmCodeNumMark(Long vmId);
 }

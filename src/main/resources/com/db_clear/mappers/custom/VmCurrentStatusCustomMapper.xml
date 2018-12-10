@@ -33,7 +33,7 @@
     SELECT
       *
   FROM
-      mq_vm_current_status_copy
+      mq_vm_current_status_mxf
   WHERE
       vm_id = #{vmId}
   </select>

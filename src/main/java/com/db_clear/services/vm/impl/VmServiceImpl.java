@@ -45,6 +45,19 @@ public class VmServiceImpl extends BaseServiceImpl<Vm> implements VmService {
         try {
             // 根据需要迁移的numMark在mq_vm_copy表中查询vm记录
             Vm vm = vmMapper.selectVmCopyListByNumMark(numMark);
+            if (vm == null) {
+                return "在猫小贩数据库中没有找到";
+            }
+            String macAddress = vm.getMacAddress();
+            String string = macAddress.substring(0,4);
+            if (!"0000".equals(string)){
+                return "不是树莓派";
+            }
+
+            Vm vm1 = vmMapper.selectVmByMacAddress(macAddress);
+            if (vm1 != null){
+                return "mac_address 相同，迁移后的numMark = " + vm1.getNummark();
+            }
 
             // 获得copy表的vmId
             Long oldVmId = vm.getId();
@@ -119,13 +132,16 @@ public class VmServiceImpl extends BaseServiceImpl<Vm> implements VmService {
             // 格子码有数据,表示当前这台机器是格子机，更新mq_vm_code 中的 vmbox_id 为新的vmbox_id
             if (flag) {
                 vmCodeMapper.updateVmBoxIdInVmCode(newVmId);
+
+                // 部分格子机 mq_vm_code 表中的numMark 为null，需手动更新mq_vm_box 表中的box_number到mq_vm_code中的numMark
+                vmCodeMapper.updateVmCodeNumMark(newVmId);
             } else {
                 // 当前这台机器是弹簧机，更新mv_vm_code 表中的print_modal_id= 62
                 vmCodeMapper.updatePrintModelIdInVmCode(newVmId);
             }
 
             // mq_vm_machine_config 迁移
-            String macAddress = vm.getMacAddress();
+            macAddress = vm.getMacAddress();
             if (StringUtils.isNotBlank(macAddress)) {
                 List<VmMachineConfig> configList = vmMachineConfigMapper.selectVmMachineConfigByMacAddress(macAddress);
                 if (CollectionUtils.isNotEmpty(configList)) {

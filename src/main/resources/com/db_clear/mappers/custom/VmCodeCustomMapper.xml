@@ -34,8 +34,8 @@
     SELECT
       mvc.*
   FROM
-      mq_vm_code_copy mvc
-      LEFT JOIN mq_vm_copy mv ON mvc.vm_id = mv.id
+      mq_vm_code_mxf mvc
+      LEFT JOIN mq_vm_mxf mv ON mvc.vm_id = mv.id
   WHERE
       mv.qrcode = mvc.qrcode
       AND mv.qrcode IS NOT NULL
@@ -48,8 +48,8 @@
     SELECT
       mvc.*
   FROM
-      mq_vm_code_copy mvc
-      LEFT JOIN mq_vm_box_copy mvb ON mvc.vmbox_id = mvb.id
+      mq_vm_code_mxf mvc
+      LEFT JOIN mq_vm_box_mxf mvb ON mvc.vmbox_id = mvb.id
   WHERE
       mvc.qrcode = mvb.qrcode
       AND mvb.qrcode IS NOT NULL
@@ -71,6 +71,17 @@
     <!--当前这台机器是弹簧机，更新mv_vm_code 表中的print_modal_id= 62 (只针对弹簧机)-->
     <update id="updatePrintModelIdInVmCode" parameterType="java.lang.Long">
         UPDATE mq_vm_code SET print_modal_id = 62 WHERE belong = 1 AND vm_id = #{vmId}
+    </update>
+
+    <!--部分格子机 mq_vm_code 表中的numMark 为null，需手动更新mq_vm_box 表中的box_number到mq_vm_code中的numMark-->
+    <update id="updateVmCodeNumMark" parameterType="java.lang.Long">
+    UPDATE mq_vm_code mvc,
+     mq_vm_box mvb
+    SET mvc.numMark = mvb.box_number
+    WHERE
+        mvc.belong = 2
+    AND mvc.vmbox_id = mvb.id
+    AND mvc.vm_id = #{vmId}
     </update>
 
 </mapper>

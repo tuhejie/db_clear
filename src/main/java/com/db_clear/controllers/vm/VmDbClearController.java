@@ -52,7 +52,7 @@ public class VmDbClearController extends BaseController {
 	 */
 	@PostMapping(value = "/move_data")
 	public String moveData(@RequestBody MoveVmDataDTO dto){
-
+		int j=1;
 		String str = dto.getNumMark();
 		if (StringUtils.isNotBlank(str)) {
 			JSONObject jo = new JSONObject();
@@ -61,6 +61,8 @@ public class VmDbClearController extends BaseController {
 				String numMark = StringUtils.trim(strs[i]);
 				String newNumMark = vmService.moveData(numMark);
 				jo.put(numMark, newNumMark);
+				System.out.println("第" +j+ "条记录： " +numMark +"=>"+ newNumMark);
+				j++;
 			}
 			return JSON.toJSONString(jo);
 		}else {

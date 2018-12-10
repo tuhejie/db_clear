@@ -75,9 +75,18 @@
       SELECT
       *
   FROM
-      mq_vm_copy
+      mq_vm_mxf
   WHERE
       numMark = #{numMark}
+  </select>
+
+  <select id="selectVmByMacAddress" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+      *
+  FROM
+      mq_vm
+  WHERE
+      mac_address = #{macAddress}
   </select>
 
   <update id="updateAllQrCode" parameterType="java.lang.Long">

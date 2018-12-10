@@ -19,7 +19,7 @@
   SELECT
       *
   FROM
-      mq_vm_machine_config_copy
+      mq_vm_machine_config_mxf
   WHERE
       mac_address = #{macAddress}
   </select>
