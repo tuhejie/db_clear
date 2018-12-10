@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.db_clear.mappers.custom.VmCustomMapper">
-  <resultMap id="BaseResultMap" type="com.db_clear.entities.custom.VmCustom">
+  <resultMap id="BaseResultMap" type="com.db_clear.entities.auto.Vm">
     <!--
       WARNING - @mbg.generated
     -->
@@ -21,9 +21,9 @@
     <result column="product_road_type" jdbcType="VARCHAR" property="productRoadType" />
     <result column="sum_row" jdbcType="INTEGER" property="sumRow" />
     <result column="sum_box" jdbcType="INTEGER" property="sumBox" />
-    <result column="province_name" jdbcType="INTEGER" property="provinceName" />
-    <result column="city_name" jdbcType="INTEGER" property="cityName" />
-    <result column="area_name" jdbcType="INTEGER" property="areaName" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
     <result column="region" jdbcType="VARCHAR" property="region" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="last_task_time" jdbcType="TIMESTAMP" property="lastTaskTime" />
@@ -62,29 +62,41 @@
     <result column="price_template_id" jdbcType="BIGINT" property="priceTemplateId" />
     <result column="price_template_update_time" jdbcType="TIMESTAMP" property="priceTemplateUpdateTime" />
     <result column="activate_time" jdbcType="TIMESTAMP" property="activateTime" />
+    <result column="assign_time" jdbcType="TIMESTAMP" property="assignTime" />
+    <result column="point_position_id" jdbcType="BIGINT" property="pointPositionId" />
+    <result column="business_area_id" jdbcType="BIGINT" property="businessAreaId" />
+    <result column="industry_id" jdbcType="BIGINT" property="industryId" />
+    <result column="first_industry_id" jdbcType="BIGINT" property="firstIndustryId" />
+    <result column="address_title" jdbcType="VARCHAR" property="addressTitle" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
-  
-  <!-- 查询设备经纬度信息 -->
-  <select id="selectVmLongitudeAndLatitude" resultMap="BaseResultMap">
-  	SELECT
-		id,
-		longitude,
-		latitude
-	FROM
-		mq_vm
-	WHERE
-		is_deleted = 0
-		and longitude is not null 
-		and latitude is not null
+
+  <select id="selectVmCopyListByNumMark" parameterType="java.lang.String" resultMap="BaseResultMap">
+      SELECT
+      *
+  FROM
+      mq_vm_mxf
+  WHERE
+      numMark = #{numMark}
   </select>
-  
-  <update id="updateVmAddress" parameterType="com.db_clear.entities.auto.Vm">
-  	UPDATE mq_vm
-	SET province_name = #{proviceName},
-	 city_name = #{cityName},
-	 area_name = #{areaName}
-	WHERE
-		id = #{id}
+
+  <select id="selectVmByMacAddress" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+      *
+  FROM
+      mq_vm
+  WHERE
+      mac_address = #{macAddress}
+  </select>
+
+  <update id="updateAllQrCode" parameterType="java.lang.Long">
+    update mq_vm_code set qrcode = REPLACE(qrcode,'http://qc.mianqu.me', 'https://mi.banmt.com') WHERE vm_id = #{vmId};
+    update mq_vm_code set qrcode = REPLACE(qrcode,'https://qc.mianqu.me', 'https://mi.banmt.com') WHERE vm_id = #{vmId};
+
+    update mq_vm set qrcode = REPLACE(qrcode,'http://qc.mianqu.me', 'https://mi.banmt.com') WHERE id = #{vmId};
+    update mq_vm set qrcode = REPLACE(qrcode,'https://qc.mianqu.me', 'https://mi.banmt.com') WHERE id = #{vmId};
+
+    update mq_vm_box set qrcode = REPLACE(qrcode,'http://qc.mianqu.me', 'https://mi.banmt.com') WHERE vm_id = #{vmId};
+    update mq_vm_box set qrcode = REPLACE(qrcode,'https://qc.mianqu.me', 'https://mi.banmt.com') WHERE vm_id = #{vmId};
   </update>
 </mapper>

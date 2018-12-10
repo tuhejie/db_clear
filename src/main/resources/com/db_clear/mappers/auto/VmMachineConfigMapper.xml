@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.db_clear.mappers.auto.VmMachineConfigMapper">
+  <resultMap id="BaseResultMap" type="com.db_clear.entities.auto.VmMachineConfig">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="vm_id" jdbcType="INTEGER" property="vmId" />
+    <result column="mac_address" jdbcType="VARCHAR" property="macAddress" />
+    <result column="config_usage" jdbcType="VARCHAR" property="configUsage" />
+    <result column="config_version" jdbcType="INTEGER" property="configVersion" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
+    <result column="config_desc" jdbcType="LONGVARCHAR" property="configDesc" />
+  </resultMap>
+</mapper>

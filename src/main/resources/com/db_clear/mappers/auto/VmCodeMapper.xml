@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.db_clear.mappers.auto.VmCodeMapper">
+  <resultMap id="BaseResultMap" type="com.db_clear.entities.auto.VmCode">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="vmcode" jdbcType="VARCHAR" property="vmcode" />
+    <result column="print_modal_id" jdbcType="SMALLINT" property="printModalId" />
+    <result column="belong" jdbcType="BIT" property="belong" />
+    <result column="vm_id" jdbcType="BIGINT" property="vmId" />
+    <result column="vmbox_id" jdbcType="BIGINT" property="vmboxId" />
+    <result column="qrcode" jdbcType="VARCHAR" property="qrcode" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="batch" jdbcType="VARCHAR" property="batch" />
+    <result column="vm_modal_id" jdbcType="SMALLINT" property="vmModalId" />
+    <result column="vm_box_modal_id" jdbcType="SMALLINT" property="vmBoxModalId" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="bind_person_id" jdbcType="SMALLINT" property="bindPersonId" />
+    <result column="bind_person_type" jdbcType="SMALLINT" property="bindPersonType" />
+    <result column="numMark" jdbcType="VARCHAR" property="nummark" />
+    <result column="manufacturer_id" jdbcType="INTEGER" property="manufacturerId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+</mapper>
